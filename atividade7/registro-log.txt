@@ -1,0 +1,6 @@
+[12/04/2026 19:38:50] Usuário escolheu inglês.
+[12/04/2026 19:38:55] Usuário solicitou inserção de produto.
+[12/04/2026 19:40:06] Usuário escolheu inglês.
+[12/04/2026 19:40:11] Usuário solicitou inserção de produto.
+[12/04/2026 19:40:16] Usuário inseriu o produto.
+[12/04/2026 19:40:34] Usuário fechou o programa.

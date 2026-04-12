@@ -1,0 +1,28 @@
+Choose an option:
+1 - Insert product
+2 - Insert product into specific position
+3 - Consult product (by name)
+4 - Consult product (by position)
+5 - Replace product
+6 - Remove product (by name)
+7 - Remove product (by position)
+0 - Close
+Invalid format!
+Enter the product name:
+In wich position would you like to place the product?
+Enter the name of the product you are searching for:
+Enter the position of the product you are searching for:
+Which position do you want to replace the product in?
+Enter the name of the new product:
+Enter the name of the product you would like to remove:
+Enter the position of the product you would like to remove:
+Thank you!
+Invalid option!
+Product added successfully!
+The product is on the list!
+The product is not on the list!
+That position does not exist on the list!
+Product present in position:
+Replacement successfully completed!
+Product successfully removed!
+Product not found!

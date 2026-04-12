@@ -1,0 +1,28 @@
+Escolha uma das seguintes opções:
+1 - Inserir produto
+2 - Inserir produto em posição específica
+3 - Consultar produto (pelo nome)
+4 - Consultar produto (pela posição)
+5 - Substituir produto
+6 - Remover produto (pelo nome)
+7 - Remover produto (pela posição)
+0 - Fechar
+Formato inválido!
+Digite o nome do produto: 
+Em qual posição deseja inserir o produto? 
+Digite o nome do produto que procura: 
+Digite a posição do produto que procura: 
+Deseja substituir o produto de qual posição? 
+Digite o nome do produto novo: 
+Digite o nome do produto que deseja remover: 
+Digite a posição do produto que deseja remover: 
+Obrigado!
+Opção inválida!
+Produto adicionado com sucesso!
+O produto está na lista!
+O produto não está na lista!
+A posição não existe na lista!
+Produto presente na posição: 
+Substituição feita com sucesso!
+Produto removido com sucesso!
+Produto não encontrado!
