@@ -1,0 +1,72 @@
+package br.edu.ifsp.dao;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.edu.ifsp.model.cargo.Cargo;
+import br.edu.ifsp.model.departamento.Departamento;
+
+public class CargoDao extends GenericDao {
+	private String instrucaoSql; // Atributo para armazenar a instru��o SQL a ser executada.
+	private PreparedStatement comando; // Atributo usado para preparar e executar instru��es SQL.
+	private ResultSet registros; // Atributo que recebe os dados retornados por uma instru��o SQL.
+	private static String excecao = null; // Atributo para armazenar mensagens de excecao.
+	
+	public String insereCargo(Cargo cargo) {
+        instrucaoSql = "INSERT INTO Cargo (Descricao, IdDepto) VALUES (?,?)";
+        return insere(instrucaoSql, cargo.getDescricao(), cargo.getDepartamento().getId());
+    }
+	
+    public List<Cargo> recuperaCargos() {
+        Cargo cargo;
+        Departamento departamento;
+        List<Cargo> cargos = new ArrayList<Cargo>();
+        instrucaoSql = "SELECT * FROM Cargo";
+        
+        try {
+        	excecao = ConnectionDatabase.conectaBd(); // Abre a conex�o com o banco de dados.
+        	if (excecao == null) {
+                // Obt�m os dados de conex�o com o banco de dados e prepara a instru��o SQL.
+                comando = ConnectionDatabase.getConexaoBd().prepareStatement(instrucaoSql);
+                
+                // Executa a instru��o SQL e retorna os dados ao objeto ResultSet.
+                registros = comando.executeQuery();
+                
+                if (registros.next()) { // Se for retornado pelo menos um registro.
+                    registros.beforeFirst(); // Retorna o cursor para antes do 1� registro.
+        	        while (registros.next()) {
+                        // Atribui o Id e a Descri��o ao objeto Cargo por meio dos m�todos set.
+        	            cargo = new Cargo();
+        	            cargo.setId(registros.getInt("Id"));
+        	            cargo.setDescricao(registros.getString("Descricao"));
+        	            
+        	            // Atribui o Id ao objeto Departamento por meio do m�todo set.
+        	            departamento = new Departamento();
+        	            departamento.setId(registros.getInt("IdDepto"));
+        	            
+        	            // Atribui o Departamento ao objeto Cargo por meio do m�todo set.
+        	            cargo.setDepartamento(departamento);
+        	            
+        	            // Adiciona o objeto Cargo ao ArrayList cargos.
+        	            cargos.add(cargo);
+        	        }
+        	    }
+                registros.close(); // Libera os recursos usados pelo objeto ResultSet.
+                comando.close(); // Libera os recursos usados pelo objeto PreparedStatement.
+                // Libera os recursos usados pelo objeto Connection e fecha a conex�o com o banco de dados.
+                ConnectionDatabase.getConexaoBd().close(); 
+            }
+        } catch (Exception e) {
+        	excecao = "Tipo de Exce��o: " + e.getClass().getSimpleName() + "\nMensagem: " + e.getMessage();
+        	cargos = null; // Caso ocorra qualquer exce��o.
+        }
+        return cargos; // Retorna o ArrayList de objetos Cargo.
+    }
+    
+    // Esse m�todo � necess�rio, porque o m�todo "recuperaCargos" retorna List<> e n�o String.
+	public String getExcecao() {
+		return excecao;
+	}
+}
