@@ -42,7 +42,7 @@ public class FuncionarioDao extends GenericDao {
         	            funcionario = new Funcionario();
         	            funcionario.setId(registros.getInt("Id"));
         	            funcionario.setNome(registros.getString("Nome"));
-        	            funcionario.setSexo((Character) registros.getObject("Sexo"));
+        	            funcionario.setSexo(registros.getString("Sexo").charAt(0));
         	            funcionario.setSalario(registros.getBigDecimal("Salario"));
         	            funcionario.setPlanoSaude(registros.getBoolean("PlanoSaude"));
         	            
